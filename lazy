@@ -29,3 +29,10 @@ function pwdf()
 {
     echo "$(pwd)/$1"
 }
+
+#Sets btightness
+function brightness()
+{
+    echo ${1}
+    #sudo su -c "echo ${1} >/sys/class/backlight/intel_backlight/brightness"
+}
