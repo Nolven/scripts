@@ -1,15 +1,15 @@
 #Renames tab
 function retab() {
-	case $DESKTOP_SESSION in
+    case $DESKTOP_SESSION in
         "plasma")
-        	echo -ne "\033]2;test change title\007" 
-        	;;
-        "ubuntu")
+            echo -ne "\033]2;test change title\007" 
+            ;;
+        *)
             if [[ -z "$ORIG" ]]; then
-				ORIG=$PS1
-			fi
-			TITLE="\[\e]2;$*\a\]"
-			PS1=${ORIG}${TITLE}
+                ORIG=$PS1
+            fi
+            TITLE="\[\e]2;$*\a\]"
+            PS1=${ORIG}${TITLE}
             ;;
     esac
 }
