@@ -35,3 +35,17 @@ function brightness()
 {
     sudo su -c "echo ${1} >/sys/class/backlight/intel_backlight/brightness"
 }
+
+#Toggles touchpad using xinput
+function touchpad()
+{
+    ID=$(xinput list | sed '/Touch[Pp]ad/!d; s/.*id=//;s/\s.*//')
+
+    if [ $(xinput list-props $ID | grep "Device Enabled" | awk '{print $NF}') == "1" ]; then
+        echo "Touchpad disabled"
+        xinput disable $ID
+    else
+        echo "Touchpad enabled"
+        xinput enable $ID
+    fi
+}
