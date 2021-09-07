@@ -55,15 +55,21 @@ function brightness()
 #Toggles touchpad using xinput
 function touchpad()
 {
-    ID=$(xinput list | sed '/Touch[Pp]ad/!d; s/.*id=//;s/\s.*//')
+    IdString=$(xinput list | sed '/Touch[Pp]ad/!d; s/.*id=//;s/\s.*//')
 
-    if [ $(xinput list-props $ID | grep "Device Enabled" | awk '{print $NF}') == "1" ]; then
-        echo "Touchpad disabled"
-        xinput disable $ID
-    else
-        echo "Touchpad enabled"
-        xinput enable $ID
-    fi
+    # it's a pretty good chanse that there will be multiple Touchpad ids (virtual for example)
+    # So we toggle each one of them
+    IdArray=(${IdString})
+
+    for id in ${IdArray[@]}; do
+        if [ $(xinput list-props $id | grep "Device Enabled" | awk '{print $NF}') == "1" ]; then
+            echo "ID: $id touchpad disabled"
+            xinput disable $id
+        else
+            echo "ID: $id touchpad enabled"
+            xinput enable $id
+        fi
+    done
 }
 
 #Actually alias to list all dockers contatiners
