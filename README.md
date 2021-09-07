@@ -14,4 +14,4 @@ git clone https://github.com/nolven/scripts.git && sed -i "/#omegascripts/,/#scr
 * brightness - sets brightness	
 * touchapd - enables/disables touchpad
 * retab - renames current terminal tab
-* docker - alias to docker container ls -a
+* docker ls - alias to docker container ls -a
