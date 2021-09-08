@@ -4,7 +4,7 @@
 Omega one-liner:
 ```
 # Places functions into ~/.bashrc inbetween special "brackets": #omegascripts and #scriptsomega (to be able to find old version of the scripts)
-git clone https://github.com/nolven/scripts.git && sed -i "/#omegascripts/,/#scriptsomega/d" ~/.bashrc && printf "\n%s\n%s\n%s\n" "#omegascripts" "$(<./scripts/functions)" "#scriptsomega" >> ~/.bashrc && rm -rf scripts && echo "Successfully added"
+git clone https://github.com/nolven/scripts.git && sed -i "/#omegascripts/,/#scriptsomega/d" ~/.bashrc && printf "\n%s\n%s\n%s\n" "#omegascripts" "$(<./scripts/functions.sh)" "#scriptsomega" >> ~/.bashrc && rm -rf scripts && echo "Successfully added"
 ```
 
 ### Functions
