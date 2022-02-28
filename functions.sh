@@ -14,7 +14,7 @@ function retab() {
     esac
 }
 
-#creates dir and cd to it
+#Creates dir and cd to it
 function md()
 {
     mkdir $1 && cd $1
@@ -78,5 +78,22 @@ docker() {
         command docker container ls -a
     else
         command docker $@
+    fi
+}
+
+#Teleports you to the root dir(where is .git located) of the current git project
+git() {
+    if [[ $1 == "root" ]]; then
+        curr_dir="."
+        maxdepth=999
+        if [ "$#" -gt 1 ]; then maxdepth=$2; fi
+
+        while [ -z $(find "$curr_dir" -maxdepth 1 -type d | grep .git) -a $maxdepth > 0 ]; do
+            curr_dir+="/.."
+            maxdepth=$((maxdepth-1))
+        done
+        cd "$curr_dir"
+    else
+        command git $@
     fi
 }

@@ -15,3 +15,4 @@ git clone https://github.com/nolven/scripts.git && sed -i "/#omegascripts/,/#scr
 * touchapd - enables/disables touchpad
 * retab - renames current terminal tab
 * docker ls - alias to docker container ls -a
+* git root - teleports you to the root dir(where is .git located) of the current git project
