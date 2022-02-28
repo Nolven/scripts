@@ -88,7 +88,7 @@ git() {
         maxdepth=999
         if [ "$#" -gt 1 ]; then maxdepth=$2; fi
 
-        while [ -z $(find "$curr_dir" -maxdepth 1 -type d | grep .git) -a $maxdepth > 0 ]; do
+        while [ -z $(find "$curr_dir" -maxdepth 1 -type d -name .git) -a $maxdepth > 0 ]; do
             curr_dir+="/.."
             maxdepth=$((maxdepth-1))
         done
