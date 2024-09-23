@@ -98,6 +98,12 @@ git() {
             done
             cd "$curr_dir"
             ;;
+
+        # add * && commit --amend && push origing --force
+        "fuckit")
+            command git add * && git commit --amend --no-edit && git push origin --force
+            ;;
+
         *)
             command git $@
             ;;
