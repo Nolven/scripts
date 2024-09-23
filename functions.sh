@@ -1,5 +1,6 @@
-#Renames tab
-function retab() {
+# Renames current terminal tab
+function retab() 
+{
     case $DESKTOP_SESSION in
         "plasma")
             echo -ne "\033]2;test change title\007" 
@@ -14,13 +15,13 @@ function retab() {
     esac
 }
 
-#Creates dir and cd to it
+# Creates dir and cd to it
 function md()
 {
-    mkdir $1 && cd $1
+    mkdir "$1" && cd "$1"
 }
 
-#Exactly what is says, verbose
+# Exactly what is says, verbose
 function untar()
 {
     file=$1
@@ -40,19 +41,19 @@ function untar()
     esac
 }
 
-#Echoes absolute path to file (with filename)
+# Echoes absolute path to file (with filename)
 function pwdf()
 {
     echo "$(pwd)/$1"
 }
 
-#Sets btightness
+# Sets btightness
 function brightness()
 {
     sudo su -c "echo ${1} >/sys/class/backlight/intel_backlight/brightness"
 }
 
-#Toggles touchpad using xinput
+# Toggles touchpad using xinput
 function touchpad()
 {
     IdString=$(xinput list | sed '/Touch[Pp]ad/!d; s/.*id=//;s/\s.*//')
@@ -72,7 +73,7 @@ function touchpad()
     done
 }
 
-#Actually alias to list all dockers contatiners
+# alias
 docker() {
     if [[ $1 == "ls" ]]; then
         command docker container ls -a
@@ -81,19 +82,24 @@ docker() {
     fi
 }
 
-#Teleports you to the root dir(where is .git located) of the current git project
+# alias
 git() {
-    if [[ $1 == "root" ]]; then
-        curr_dir="."
-        maxdepth=999
-        if [ "$#" -gt 1 ]; then maxdepth=$2; fi
+    case "$1" in 
 
-        while [ -z $(find "$curr_dir" -maxdepth 1 -type d -name .git) -a $maxdepth > 0 ]; do
-            curr_dir+="/.."
-            maxdepth=$((maxdepth-1))
-        done
-        cd "$curr_dir"
-    else
-        command git $@
-    fi
+        # Teleport you to git project root dir (.git location)
+        "root")
+            curr_dir="."
+            maxdepth=999
+            if [ "$#" -gt 1 ]; then maxdepth=$2; fi
+
+            while [ -z $(find "$curr_dir" -maxdepth 1 -type d -name .git) -a $maxdepth > 0 ]; do
+                curr_dir+="/.."
+                maxdepth=$((maxdepth-1))
+            done
+            cd "$curr_dir"
+            ;;
+        *)
+            command git $@
+            ;;
+    esac
 }
