@@ -16,5 +16,6 @@ git clone https://github.com/nolven/scripts.git /tmp/scripts && sed -i "/#omegas
 * retab - renames current terminal tab
 * docker ls - alias to docker container ls -a
 * git 
-	* root - teleports you to the root dir(where is .git located) of the current git project
-	* fuckit - add * && commit --amend --no-edit && push origin --force
+	* root - teleports you to the root dir(where .git is located) of the current git project
+	* fuckit - add * && commit --amend --no-edit && push origin --force (should probably ask for the remote name)
+	* cbranch - prints current branch name

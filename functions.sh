@@ -104,6 +104,11 @@ git() {
             command git add * && git commit --amend --no-edit && git push origin --force
             ;;
 
+        # echo current branch name
+        "cbranch")
+            git rev-parse --abbrev-ref HEAD
+            ;;
+
         *)
             command git $@
             ;;
